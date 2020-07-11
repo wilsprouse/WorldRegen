@@ -1,0 +1,7 @@
+name: WorldRegen
+main: main.Main
+version: 1.0
+author: Wavex
+commands:
+  setworldregen:
+    usage: Wrong usage! Use /setworldregen
