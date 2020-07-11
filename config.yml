@@ -9,5 +9,5 @@ WorldRegen:
     coal: false
     
   regenConfig:
-    time: 20
+    time: 4
   
