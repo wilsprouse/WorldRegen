@@ -1,13 +1,8 @@
 WorldRegen:
   regen: false
   blacklist:
-    diamond: true
-    gold: true
-    redstone: true
-    lapiz: true
-    emerald: true
-    coal: false
-    
+    56: true
+    45: false
   regenConfig:
     time: 4
   

@@ -21,8 +21,9 @@ public class blockListener implements Listener {
 		
 	}
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler
-	public void onBlockBreak(BlockBreakEvent e) {
+	public void onBlockBreak(BlockBreakEvent e) throws InterruptedException {
 		Player p = e.getPlayer();
 		
 		ConfigurationSection regen = main.getConfig().getConfigurationSection("WorldRegen");
@@ -33,27 +34,37 @@ public class blockListener implements Listener {
 			Location blockLoc = e.getBlock().getLocation();
 			Material block = e.getBlock().getType();
 			
-			 e.getBlock().setType(Material.AIR);
+			ConfigurationSection blackList = regen.getConfigurationSection("blacklist");
+			boolean cont = true;
+			for (String bl : blackList.getKeys(false)) {
+				p.sendMessage(bl);
+				if (Integer.parseInt(bl) == block.getId()) {
+					cont = false;
+				}
+				
+			}
+			
+			
+			if (cont) { // Not sure why if it will ever matter, but .getId() is deprecated by SpigotMC
+				p.sendMessage("Diamond. Ha!");
+			
+			
+			e.getBlock().setType(Material.AIR);
 			
 			ConfigurationSection regenConfig = regen.getConfigurationSection("regenConfig");
 			
 			String timeStr = regenConfig.getString("time");
-			
-			int loopVal;
-			//Timer timer;
-			//timer = new Timer();
-			for (loopVal = 0; loopVal < Integer.parseInt(timeStr); loopVal++) {
-				
-				p.sendMessage(Integer.toString(loopVal));
-				
-			}
+			Thread.sleep(Integer.parseInt(timeStr)*1000);
+
 			e.setCancelled(true);
 			blockLoc.getBlock().setType(block);
+			//e.getBlock().
+			} else {
+				p.sendMessage("DENIIIIIED!");
+			}
 			
 		}
 		
-		
-		//p.sendMessage("Grats, you broke a block");
 	}
 	
 	

@@ -30,12 +30,9 @@ public class setWorldRegenCommand implements CommandExecutor {
 			return true;
 		}
 		
-		//sender.sendMessage("JUICY!");
 		ConfigurationSection regen = main.getConfig().getConfigurationSection("WorldRegen");
 		
-		
 		regen.set("regen", true);
-		//sender.sendMessage("JUICY2!");
 		
 		sender.sendMessage("Done");
 		main.saveConfig();
