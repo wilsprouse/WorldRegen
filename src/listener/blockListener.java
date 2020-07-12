@@ -1,11 +1,8 @@
 package listener;
 
-import java.util.Timer;
-
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -43,14 +40,14 @@ public class blockListener implements Listener {
 			String timeStr = regenConfig.getString("time");
 			
 			int loopVal;
-			Timer timer;
-			timer = new Timer();
+			//Timer timer;
+			//timer = new Timer();
 			for (loopVal = 0; loopVal < Integer.parseInt(timeStr); loopVal++) {
 				
 				p.sendMessage(Integer.toString(loopVal));
 				
 			}
-			
+			e.setCancelled(true);
 			blockLoc.getBlock().setType(block);
 			
 		}
